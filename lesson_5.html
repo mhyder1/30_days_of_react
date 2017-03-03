@@ -94,8 +94,20 @@
         return(
           <div className="content">
           {/* timeline item */}
-          {activities.map((activity) => {
-            return(
+          {activities.map((activity) => (
+            <ActivityItem activity={activity} />
+          ))}
+
+          </div>
+        )
+      }
+    }
+
+    class ActivityItem extends React.Component{
+      render(){
+        const {activity} = this.props;
+
+        return(
 
             <div className="media avatar">
               <div className="media-left">
@@ -112,10 +124,6 @@
             </div>
 
             )
-          })}
-
-          </div>
-        )
       }
     }
 
