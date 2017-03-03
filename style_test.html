@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello world</title>
+  <!-- Script tags including React -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
+  <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+    img{
+      border-radius: 50%;
+      border: 4px solid grey;
+    }
+    .title{
+      text-align: center;
+      display: inline-block;
+    }
+    .fa-navicon, .fa-search{
+      font-size: 40px;
+      color: light-blue;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+  
+    //child component 1
+    class Header extends React.Component {
+      render(){
+        return (
+
+          <div className="header navbar navbar-default">
+            <div className="fa fa-navicon navbar-lef text-primary"></div>
+
+            <p className="title navbar-text text-center">Timeline</p>
+
+            <input
+              type="text"
+              className="searchInput"
+              placeholder="Search ..." />
+
+            <div className="fa fa-search searchIcon text-primary navbar-right"></div>
+          </div>
+        )
+      }
+    }
+
+    //child component 2
+    class Content extends React.Component {
+      render(){
+        return(
+            <div className="content">
+              <div className="line"></div>
+
+            {/* Timeline item */}
+              <div className="item">
+                <div className="avatar">
+                  <img src="http://lorempixel.com/50/50" />
+                  Doug
+                </div>
+
+                <span className="time">
+                  An hour ago
+                </span>
+                <p>Ate lunch</p>
+                <div className="commentCount">
+                  2
+                </div>
+              </div>
+
+              {/* ... */}
+
+            </div>
+        )
+      }
+    }
+
+  //parent component
+    class App extends React.Component{
+      render(){
+        return (
+          <div className="notificationFrame">
+            <div className="panel">
+              <Header />
+              <Content />
+            </div>
+          </div>
+        )
+      }
+    }
+
+    var mount = document.querySelector('#app');
+    ReactDOM.render(<App />, mount);
+
+  </script>
+</body>
+</html>
