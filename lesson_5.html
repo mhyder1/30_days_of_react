@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello world</title>
+  <!-- Script tags including React -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
+  <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+    img{
+      border-radius: 50%;
+      border: 4px solid grey;
+    }
+    .media{
+      margin-bottom:20px;
+    }
+    .media h4{
+      color: #959595;
+      display: inline-block;
+    }
+    .media-body span{
+      margin-right:20px;
+    }
+    .media-left{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    const activities = [
+      {
+        timestamp: new Date().getTime(),
+        text: "Ate lunch",
+        user: {
+          id: 1, name: 'Nate',
+          avatar: "http://lorempixel.com/50/50"
+        },
+        comments: [{ from: 'Ari', text: 'Me too!' }]
+      },
+      {
+        timestamp: new Date().getTime(),
+        text: "Woke up early for a beautiful run",
+        user: {
+          id: 2, name: 'Ari',
+          avatar: "http://lorempixel.com/50/50"
+        },
+        comments: [{ from: 'Nate', text: 'I am so jealous' }]
+      },
+    ]
+
+
+
+    //child component 1
+    class Header extends React.Component {
+      render(){
+        return (
+
+          <nav className="navbar navbar-inverse">
+            <div className="container">
+              <div className="navbar-header">
+                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+                <a className="navbar-brand" href="#">{this.props.title}</a>
+              </div>
+              <div id="navbar" className="navbar-collapse collapse">
+                <form className="navbar-form navbar-right">
+                  <div className="form-group">
+                    <input type="text" placeholder="Search" className="form-control fa fa-search searchIcon"></input>
+                  </div>
+                  <button type="submit" className="btn btn-success">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        )
+      }
+    }
+
+    //child component 2
+    class Content extends React.Component {
+        
+      render(){
+        const {activities} = this.props;
+        
+        return(
+          <div className="content">
+          {/* timeline item */}
+          {activities.map((activity) => {
+            return(
+
+            <div className="media avatar">
+              <div className="media-left">
+                <a href="#">
+                  <img className="media-object" src={activity.user.avatar} alt="...">
+                  </img>{activity.user.name}
+                </a>
+              </div>
+              <div className="media-body">
+                <p className="media-heading">{activity.timestamp}</p>
+                <h4>{activity.text}</h4>
+                <span className="pull-right commentCount fa fa-comment"> {activity.comments.length}</span>
+              </div>
+            </div>
+
+            )
+          })}
+
+          </div>
+        )
+      }
+    }
+
+  //parent component
+    class App extends React.Component{
+      render(){
+        return (
+          <div className="notificationFrame">
+            <div className="panel">
+              <Header title="Timeline"/>
+              <Content activities={activities}/>
+            </div>
+          </div>
+        )
+      }
+    }
+
+    var mount = document.querySelector('#app');
+    ReactDOM.render(<App />, mount);
+
+  </script>
+</body>
+</html>

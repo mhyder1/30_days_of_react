@@ -13,14 +13,42 @@
     img{
       border-radius: 50%;
       border: 4px solid grey;
+      z-index: 100;
+    }
+    .avatar{
+      width: 60px;
     }
     .title{
       text-align: center;
       display: inline-block;
+      font-size: 30px;
     }
     .fa-navicon, .fa-search{
       font-size: 40px;
       color: light-blue;
+      margin: 0 10px;
+    }
+    .header{
+      text-align: center;
+    }
+    .content{
+
+    }
+    .item{
+      display: flex;
+      flex-direction: row;
+    }
+    .avatar{
+      /*flex-direction: column;*/
+    }
+    .time{
+      /*flex: 1;*/
+    }
+    .item p{
+      /*flex: 1;*/
+    }
+    .commentCount{
+      /*flex: 1;*/
     }
 
   </style>
@@ -35,16 +63,11 @@
         return (
 
           <div className="header navbar navbar-default">
-            <div className="fa fa-navicon navbar-lef text-primary"></div>
+            <div className="fa fa-navicon pull-left"></div>
 
-            <p className="title navbar-text text-center">Timeline</p>
+            <p className="title text-center">Timeline</p>
 
-            <input
-              type="text"
-              className="searchInput"
-              placeholder="Search ..." />
-
-            <div className="fa fa-search searchIcon text-primary navbar-right"></div>
+            <div className="fa fa-search searchIcon pull-right"></div>
           </div>
         )
       }
@@ -55,13 +78,10 @@
       render(){
         return(
             <div className="content">
-              <div className="line"></div>
 
-            {/* Timeline item */}
               <div className="item">
                 <div className="avatar">
-                  <img src="http://lorempixel.com/50/50" />
-                  Doug
+                  <img src="50x50.gif" />
                 </div>
 
                 <span className="time">
@@ -73,8 +93,19 @@
                 </div>
               </div>
 
-              {/* ... */}
+              {/*<div className="item">
+                <div className="avatar">
+                  <img src="http://lorempixel.com/50/50" />
+                </div>
 
+                <span className="time">
+                  An hour ago
+                </span>
+                <p>Ate lunch</p>
+                <div className="commentCount">
+                  2
+                </div>
+              </div>*/}
             </div>
         )
       }
